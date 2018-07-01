@@ -12,6 +12,13 @@ class LoginForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
+    nickname = StringField(
+        'Nick Name',
+        validators=[
+            DataRequired(),
+            Length(min=6, max=40)
+        ]
+    )
     email = StringField(
         'Email Address',
         validators=[

@@ -15,9 +15,10 @@
     {{ wtf.form_errors(form, hiddens="only") }}
 
     <div class="col-lg-4 col-sm-4">
-      {{ wtf.form_field(form.email) }}
-      {{ wtf.form_field(form.password) }}
-      {{ wtf.form_field(form.confirm) }}
+      {{ wtf.form_field(form.nickname, placeholder="Nick Name") }}
+      {{ wtf.form_field(form.email, placeholder="Email") }}
+      {{ wtf.form_field(form.password, placeholder="Password") }}
+      {{ wtf.form_field(form.confirm, placeholder="Password again") }}
 
       <button class="btn btn-success" type="submit">Register!</button>
       <br><br>
