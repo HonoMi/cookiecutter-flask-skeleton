@@ -17,6 +17,12 @@ user_blueprint = Blueprint('user', __name__,)
 def register():
     form = RegisterForm(request.form)
     if form.validate_on_submit():
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        print(existing_user)
+        if existing_user is not None:
+            # TODO: with message
+            flash('The Email address you chose is already used. Please enter different one.', 'danger')
+            return render_template('user/register.html', form=form)
         user = User(
             nickname=form.nickname.data,
             email=form.email.data,
@@ -24,7 +30,6 @@ def register():
         )
         db.session.add(user)
         db.session.commit()
-
         login_user(user)
 
         flash('Thank you for registering.', 'success')
